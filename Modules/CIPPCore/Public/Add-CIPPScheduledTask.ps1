@@ -54,5 +54,5 @@ function Add-CIPPScheduledTask {
     } catch {
         return "Could not add task: $($_.Exception.Message)"
     }
-    return "Successfully added task: $($entity.Name)"
+    return 'Successfully added task'
 }

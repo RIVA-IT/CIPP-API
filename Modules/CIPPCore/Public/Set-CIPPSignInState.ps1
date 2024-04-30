@@ -7,8 +7,10 @@ function Set-CIPPSignInState {
         $APIName = 'Disable User Sign-in',
         $ExecutingUser
     )
-
+    0
     try {
+        if ($userid -like '*#EXT#*') { $userid = [System.Web.HttpUtility]::UrlEncode($userid) }
+
         $body = @{
             accountEnabled = [bool]$AccountEnabled
         } | ConvertTo-Json -Compress -Depth 1
@@ -20,4 +22,3 @@ function Set-CIPPSignInState {
         return "Could not disable $userid. Error: $($_.Exception.Message)"
     }
 }
-
